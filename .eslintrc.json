@@ -5,7 +5,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["./test-driver-log/tsconfig.json"],
+        "project": ["./driver-log/tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
