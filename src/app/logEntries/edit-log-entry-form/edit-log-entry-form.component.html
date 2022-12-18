@@ -1,0 +1,145 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-sm="2">
+        <ion-item lines="inline" class="d-inline">
+          <ion-label position="floating">Dato</ion-label>
+          <ion-input
+            size="16"
+            type="datetime-local"
+            name="date"
+            [value]="this.now.toISOString().substring(0,19)"
+            date
+            formControlName="date"
+            ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm="4" size-md="6">
+        <ion-item lines="inline" class="d-inline">
+          <ion-label position="floating"> Beskrivelse</ion-label>
+          <ion-input
+            size="50"
+            inputmode="text"
+            maxlength="50"
+            clearInput="true"
+            type="text"
+            placeholder="indtast sted eller Formål"
+            name="description"
+            description
+            formControlName="description"
+            ></ion-input>
+            <ion-note slot="helper">must be at text</ion-note>
+          <ion-note slot="error">fejl i ndtastningen</ion-note>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="4" size-sm="2" size-md="2">
+        <ion-item lines="inline" class="d-inline" >
+          <ion-label position="floating"> Start kilometer</ion-label>
+          <ion-input
+            size="10"
+            inputmode="decimal"
+            maxlength="10"
+            clearInput="true"
+            type="number"
+            [value]="distanceEnd"
+            placeholder="Indtast start kilometer"
+            name="distanceStart"
+            distanceStart
+            formControlName="distanceStart"
+            >
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4" size-sm="2" size-md="2">
+        <ion-item lines="inline" class="d-inline">
+          <ion-label position="floating"> Slut kilometer</ion-label>
+          <ion-input
+              size="10"
+              inputmode="decimal"
+              maxlength="10"
+              clearInput="true"
+              type="number"
+              placeholder="Indtast Slut kilometer"
+              name="distanceEnd"
+              [value]="distanceEnd"
+              distanceEnd
+              formControlName="distanceEnd"
+              appDistanceValidator
+              >
+            </ion-input>
+            <ion-note slot="helper">the distance end must be greater than distance start</ion-note>
+          <ion-note slot="error">distance end is not greater than distance start</ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4" size-sm="1" size-md="1">
+        <ion-item lines="inline" id="fuel" class="">
+          <span class="fuel-station"></span>
+          <ion-checkbox
+            slot="start"
+            name="fuel"
+            fuel
+            formControlName="fuel"
+            ></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+
+        <!--ion-row  *ngIf="editDriverLogItemForm.value.fuel">
+      -->
+        <ion-col size="6" size-sm="3"  *ngIf="form.value.fuel">
+
+          <ion-item lines="inline" class="d-inline" id="amounts">
+            <ion-input
+            slot="start"
+            size="6"
+            inputmode="decimal"
+            [clearInput]="true"
+            type="number"
+            placeholder="Indtast antal"
+            name="amounts"
+            amounts
+            formControlName="amounts"
+            >
+            </ion-input>
+            <ion-select
+              name="amountUnit"
+              id="amountUnit"
+              okText="vælg"
+              size="2"
+              amountUnit
+              formControlName="amountUnit"
+              >
+              <ion-select-option value="Liter">Liter</ion-select-option>
+              <ion-select-option value="kwh"> kwh</ion-select-option>
+            </ion-select>
+             </ion-item>
+        </ion-col>
+
+        <ion-col size="6" size-sm="2"  *ngIf="form.value.fuel">
+
+          <ion-item lines="inline" class="d-inline" id="priceUnit">
+            <ion-label position="floating"> pris/{{form.value.amountUnit}}</ion-label>
+            <ion-input
+              inputmode="decimal"
+              [clearInput]="true"
+              type="number"
+              size="6"
+              placeholder="Indtast pris pr.{{form.value.amountUnit}}"
+              name="priceUnit"
+              priceUnit
+              formControlName="priceUnit"
+              ></ion-input>
+              <label  position="floating" slot="end" class="d-inline ion-float-end ion-text-end ion-align-self-center "> kr</label>
+          </ion-item>
+        </ion-col>
+        <!--/ion-row-->
+
+    </ion-row>
+
+    <ion-button type="submit">
+      <ion-label> Tilføj data</ion-label>
+    </ion-button>
+  </ion-grid>
+</form>
