@@ -7,6 +7,7 @@
     <ion-col class="field-amount ion-text-end ion-hide-md-down"> antal</ion-col>
     <ion-col class="field-unit ion-hide-md-down"> enhed</ion-col>
     <ion-col class="field-price-unit ion-text-end ion-hide-md-down" > pris pr. enhed</ion-col>
+    <ion-col class="field-distance-pr-unit ion-hide-md- ion-hide-md-down ion-text-end" > distance pr enhed </ion-col>
   </ion-row>
   <div *ngIf="logEntries">
   <ion-row *ngFor="let entry of logEntries; index as i">
@@ -19,6 +20,7 @@
     <ion-col class="field-amount ion-text-end ion-hide-md-down"  *ngIf="entry.logEntryDetail.fuel"> {{entry.fuelEntryDetail.amount}}</ion-col>
     <ion-col class="field-unit ion-hide-md-down" *ngIf="entry.logEntryDetail.fuel"> {{entry.fuelEntryDetail.amountUnit}}</ion-col>
     <ion-col class="field-price-unit ion-text-end ion-hide-md-down" *ngIf="entry.logEntryDetail.fuel"> {{entry.fuelEntryDetail.priceUnit}}</ion-col>
+    <ion-col class="field-distance-pr-unit ion-hie-md-down ion-text-end"> {{entry.fuelEntryDetail.distance/entry.fuelEntryDetail.amount}} </ion-col>
 
   </ng-container>
   </ion-row>
