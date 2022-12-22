@@ -41,6 +41,11 @@ ion-col {
   border-width: 0.5ch;
 }
 
+.field-distance-unit {
+  width: 14ch;
+  border-width: 0.5ch;
+}
+
 @media screen and (min-width: 576px) {
   .field-description {
     width: 50vw;
@@ -57,13 +62,13 @@ ion-col {
 
 @media screen and (min-width: 768px) {
   .field-description {
-    width: 45vw;
+    width: 30vw;
   }
 }
 
 @media screen and (min-width: 992px) {
   .field-description {
-    width: 50vw;
+    width: 35vw;
   }
 
 }

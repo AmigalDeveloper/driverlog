@@ -6,6 +6,8 @@ export class LogEntry {
     distanceEnd: number;
     description: string;
     fuel: boolean;
+    timestamp: any
+    id?: any;
   };
 
   fuelEntryDetail!: {
@@ -13,6 +15,8 @@ export class LogEntry {
     amountUnit: string;
     priceUnit: number;
     distance: number;
+    timestamp:any;
+    id?: any;
   };
 
   constructor(
@@ -32,34 +36,15 @@ export class LogEntry {
       distanceEnd: 0,
       description: ' start',
       fuel: true,
+      timestamp: new Date().toISOString(),
     });
     this.setFuelEntryDetail({
       amount: 0,
       amountUnit: 'liter',
       priceUnit: 0,
       distance: 0,
+      timestamp: new Date().toISOString()
     });
-    console.log(
-      'constructor input',
-      'date:',
-      date,
-      'distanceStart:',
-      distanceStart,
-      'distanceEnd:',
-      distanceEnd,
-      'description:',
-      description,
-      'fuel:',
-      fuel,
-      'amount:',
-      amount,
-      'amountUnit:',
-      amountUnit,
-      'priceUnit:',
-      priceUnit,
-      'distance:',
-      distance
-    );
 
     if (date) {
       this.logEntryDetail.date = date;
@@ -104,6 +89,8 @@ export class LogEntry {
     distanceEnd: number;
     description: string;
     fuel: boolean;
+    timestamp: any;
+    id?;
   }) {
     this.logEntryDetail = value;
   }
@@ -113,6 +100,8 @@ export class LogEntry {
     amountUnit: string;
     priceUnit: number;
     distance: number;
+    timestamp: any;
+    id?;
   }) {
     this.fuelEntryDetail = value;
   }

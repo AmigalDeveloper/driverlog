@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const DATABASE_NAME = 'DriverLogsBase';
-const DATABASE_VERSION = 2;
+const DATABASE_VERSION = 1;
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +34,7 @@ export class DBServiceService {
         // if logEntry store is not created, then create it
         // auto generate key
         const driverLogStore = this.db.createObjectStore('LogEntries', {
+          keyPath: 'id',
           autoIncrement: true,
         });
 
@@ -52,6 +53,7 @@ export class DBServiceService {
         // if FuelEntries is not an object store, then create it
         // auto generate key
         const fuelStore = this.db.createObjectStore('FuelEntries', {
+          keyPath: 'id',
           autoIncrement: true,
         });
 

@@ -11,7 +11,6 @@ export const distanceValidator: ValidatorFn = (control: AbstractControl): Valida
      end = control.value;
     }
     const invalid = end < start;
-    console.log('start: ', start, 'end: ', end, 'invalid: ', invalid, 'control: ',control);
     return !invalid ? null : {validDistance: {value: control.value}};
   };
 
@@ -26,7 +25,6 @@ export class DistanceValidatorDirective implements Validator, OnChanges {
   private onChange?: () => void;
 
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
-    console.log('control:',control);
     return  distanceValidator(control);
 
   }
