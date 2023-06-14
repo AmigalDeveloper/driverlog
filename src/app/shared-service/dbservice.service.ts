@@ -88,7 +88,7 @@ export class DBServiceService {
    */
 
   getDatabase(database = DATABASE_NAME, version = DATABASE_VERSION): IDBOpenDBRequest {
-    console.log('getDatabse parameter', database,version);
+    console.log('getDatabase parameter', database,version);
     return  indexedDB.open(database,version);
   }
 

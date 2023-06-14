@@ -46,6 +46,26 @@ export class ListLogEntriesComponent implements OnInit {
       });*/
   }
 
+  delete(logEntryId) {
+    console.log('delete logentryId ' + logEntryId);
+    this.logEntriesService
+      .delete(this.logEntries[logEntryId].LogEntryDetail.id)
+      .then(
+        (result: any) => {
+          console.log('logEntryId ' + logEntryId + ' is deleted', result);
+          this.logEntries.splice(logEntryId,1);
+        },
+        (reject) => console.error('delete failed',reject)
+      )
+      .catch((reason: any) =>
+      console.error(
+        'deleted of logEntryKey ' + logEntryId + ' is failed'
+      )
+    )
+      .finally(() => console.log('finaly '))
+      ;
+  }
+
   getAllData() {
     this.logEntriesService.getAllData();
   }

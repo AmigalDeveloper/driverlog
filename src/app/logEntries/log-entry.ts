@@ -16,6 +16,7 @@ export class LogEntry {
     priceUnit: number;
     distance: number;
     timestamp:any;
+    logEntryId?: any,
     id?: any;
   };
 

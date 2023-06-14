@@ -39,7 +39,7 @@ export class LogEntriesService {
       if (!this.database.objectStoreNames.contains(LOG_ENTRIES_STORE_NAME)) {
         this.logEntriesStore = this.database.createObjectStore(
           LOG_ENTRIES_STORE_NAME,
-          { keyPath: "id",autoIncrement: true }
+          { keyPath: 'id', autoIncrement: true }
         );
         if (!this.logEntriesStore.indexNames.contains('by_date')) {
           this.logEntriesStore.createIndex('by_date', 'date');
@@ -80,7 +80,7 @@ export class LogEntriesService {
         // if FUEL_ENTRIES_STORE_NAME isn't created, then create it
         this.fuelEntriesStore = this.database.createObjectStore(
           FUEL_ENTRIES_STORE_NAME,
-          { keyPath: "id",autoIncrement: true }
+          { keyPath: 'id', autoIncrement: true }
         );
         if (!this.fuelEntriesStore.indexNames.contains('by_logEntryID')) {
           // if index for FUEL_ENTRIES_STORE_NAME isn't created, then create it
@@ -145,8 +145,12 @@ export class LogEntriesService {
       // store  logEntryDetail
       const logEntryDetail = {
         ...logEntry.LogEntryDetail,
-        timestamp: !logEntry.LogEntryDetail.timestamp ? new Date().toISOString(): logEntry.LogEntryDetail.timestamp,
+        timestamp: !logEntry.LogEntryDetail.timestamp
+          ? new Date().toISOString()
+          : logEntry.LogEntryDetail.timestamp,
       };
+
+      // store the LogEntry in database
       const logEntryRequest = this.dbService.put(
         tx.objectStore(LOG_ENTRIES_STORE_NAME),
         logEntryDetail
@@ -155,16 +159,19 @@ export class LogEntriesService {
       logEntryRequest.onsuccess = async () => {
         // when it success
         const logEntryID = logEntryRequest.result; // save the Key
-        logEntry.setLogEntryDetail({...logEntryDetail,id: logEntryID})
+        logEntry.setLogEntryDetail({ ...logEntryDetail, id: logEntryID });
 
         if (logEntry.LogEntryDetail.fuel) {
           // if fuel is sat, then then add logEntryID to fuelEntryDetai
-          const distance = await this.getDistanceFuel(tx, logEntryDetail);
+
+          const distance = await this.getDistanceFuel(tx, logEntryDetail); // find the distance from last fuel
           const fuelEntryDetail = {
             ...logEntry.FuelEntryDetail,
             logEntryID,
             distance: Number(distance).valueOf(),
-            timestamp: !logEntry.fuelEntryDetail.timestamp ? new Date().toISOString() : logEntry.fuelEntryDetail.timestamp,
+            timestamp: !logEntry.fuelEntryDetail.timestamp
+              ? new Date().toISOString()
+              : logEntry.fuelEntryDetail.timestamp,
           };
 
           // store fuelEntryDetail
@@ -177,7 +184,7 @@ export class LogEntriesService {
           fuelRequst.onsuccess = () => {
             const result = fuelRequst.result;
             console.log('fuelEntry data is saved', result);
-            logEntry.setFuelEntryDetail({...fuelEntryDetail,id: result});
+            logEntry.setFuelEntryDetail({ ...fuelEntryDetail, id: result });
             tx.commit(); // commit the transaction
           }; // fuelRequest.onsucces
 
@@ -211,11 +218,66 @@ export class LogEntriesService {
     });
   } // end of put
 
+  async delete(logEntryKey) {
+    const tx = this.database.transaction(
+      [LOG_ENTRIES_STORE_NAME, FUEL_ENTRIES_STORE_NAME],
+      'readwrite'
+    );
+
+    tx.oncomplete = () => {
+      console.log('logEntry with key ' + logEntryKey + ' is deleted');
+    };
+
+    tx.onerror = () => {
+      console.error(
+        'delete of logEntry with key ' + logEntryKey + 'is failed',
+        tx.error
+      );
+    };
+
+    const logEntryStore = tx.objectStore(LOG_ENTRIES_STORE_NAME);
+
+    const logEntryRequest = logEntryStore.get(logEntryKey);
+
+    logEntryRequest.onerror = () => {
+      console.error('can\'t get the logentry record', logEntryRequest.error);
+      tx.abort();
+    }
+
+    logEntryRequest.onsuccess = () => {
+      const logEntry = logEntryRequest.result;
+
+      if (logEntry.fuel) {
+        const fuelStore = tx.objectStore(FUEL_ENTRIES_STORE_NAME);
+
+        const fuelKey = fuelStore.index('by_logEntryID').getKey(logEntry.id);
+
+        fuelKey.onsuccess = () => {
+          console.log('fuelkey is ' + fuelKey.result);
+
+          if (fuelKey.result !== undefined && fuelKey.result) fuelStore.delete(fuelKey.result);
+        };
+
+        fuelKey.onerror = () => {
+          console.error("Can't find the key" + logEntryKey, fuelKey.error);
+        };
+      }
+
+      const logEntryDeleteRequest = logEntryStore.delete(logEntryKey);
+
+      logEntryDeleteRequest.onsuccess = () => {
+        console.log(
+          'logEntry with key ' + logEntryKey + ' is deleted',
+          logEntryDeleteRequest.result
+        );
+      };
+    };
+  }
+
   /* @name: getAllData
    *  @param: none
    *  @return: Array of LogEntry
    */
-
   getAllData() {
     console.log('getAllData this.db', this.dbService);
     const databaseRequest = this.dbService.getDatabase(
@@ -282,21 +344,12 @@ export class LogEntriesService {
     }; // end of getAll
   }
 
-  getLogEntryRecord(key: IDBValidKey | IDBKeyRange | null | undefined) {
-    const entryIndexCursor = this.logEntriesStore.openCursor(key);
-    entryIndexCursor.onsuccess = () => {
-      const entryCursor = entryIndexCursor.result;
-      console.log('cursor', entryCursor);
-      return entryCursor;
-    };
-
-    entryIndexCursor.onerror = () => {
-      const error = entryIndexCursor.error;
-      console.error('entryCursor fejlede', error);
-      return error;
-    };
-  }
-
+  /*
+   * @name: getDistance
+   * @param transaction  * the transaction where this should be a part of
+   * @param logEntry     * the logEntry where is the end logentry
+   * @return Promise<Number>
+   */
   async getDistanceFuel(
     transaction: IDBTransaction,
     logEntry: {
@@ -306,7 +359,7 @@ export class LogEntriesService {
       distanceEnd: any;
       description?: string;
       fuel?: boolean;
-      id?
+      id?;
     }
   ) {
     // get distance betwwen fuel
@@ -339,26 +392,27 @@ export class LogEntriesService {
           // if there some values on the cursor then
           const logEntryID = fuelCursor.value.logEntryID; // the logEntryID for the last fuel entry
 
-          if (logEntryID === logEntry.id) { fuelCursor.continue() }
-          else {
-          // get the logEntry that have relation for the last fuel entry
-          const entryRequest = transaction
-            .objectStore(LOG_ENTRIES_STORE_NAME)
-            .get(logEntryID);
-          entryRequest.onsuccess = () => {
-            // if we get af value, then
-            tempStartDistance = entryRequest.result.distanceEnd; // let the startDistance be the distanceEnd for last fuel
-            tempDistance = tempEndDistance - tempStartDistance; // calculate the distance
-            console.log('return distance', tempDistance);
-            resolve(tempDistance); // return the distance
-          };
+          if (logEntryID === logEntry.id) {
+            fuelCursor.continue();
+          } else {
+            // get the logEntry that have relation for the last fuel entry
+            const entryRequest = transaction
+              .objectStore(LOG_ENTRIES_STORE_NAME)
+              .get(logEntryID);
+            entryRequest.onsuccess = () => {
+              // if we get af value, then
+              tempStartDistance = entryRequest.result.distanceEnd; // let the startDistance be the distanceEnd for last fuel
+              tempDistance = tempEndDistance - tempStartDistance; // calculate the distance
+              console.log('return distance', tempDistance);
+              resolve(tempDistance); // return the distance
+            };
 
-          entryRequest.onerror = () => {
-            const error = entryRequest.error;
-            console.error('get last distanceEd failed', error);
-            transaction.abort();
-          };
-        }
+            entryRequest.onerror = () => {
+              const error = entryRequest.error;
+              console.error('get last distanceEd failed', error);
+              transaction.abort();
+            };
+          }
         } else {
           console.log('no more fuel entries', fuelCursor);
           resolve(tempEndDistance - 0);
@@ -371,10 +425,5 @@ export class LogEntriesService {
         reject(fuelError);
       };
     });
-  }
-
-  getLast() {
-    console.log('getValues', this.logEntries.getValue());
-    return this.logEntries.getValue();
   }
 }

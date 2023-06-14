@@ -6,7 +6,7 @@
     "app": {
       "projectType": "application",
       "schematics": {},
-      "root": "./",
+      "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
@@ -134,6 +134,9 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
