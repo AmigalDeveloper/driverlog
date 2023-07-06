@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeDa from '@angular/common/locales/da';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserModule } from './user/user.module';
 registerLocaleData(localeDa);
 
 @NgModule({
@@ -28,7 +29,8 @@ registerLocaleData(localeDa);
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    UserModule
   ],
   exports: [],
   providers: [

@@ -18,13 +18,7 @@
         <ion-col>
           <ion-item lines="inline" class="d-inline">
             <ion-label position="floating">Dato</ion-label>
-            <!--ion-input
-            size="16"
-            type="datetime-local"
-            name="date"
-            [value]="selectedEntry.logEntryDetail.date ? selectedEntry.logEntryDetail.date : this.now.toISOString().substring(0,19)"
-            date
-            formControlName="date"-->
+
             <ion-input
             size="16"
             type="datetime-local"
@@ -38,17 +32,7 @@
         <ion-col>
           <ion-item lines="inline" class="d-inline">
             <ion-label position="floating"> Beskrivelse</ion-label>
-            <!--ion-input
-            size="50"
-            inputmode="text"
-            maxlength="50"
-            clearInput="true"
-            type="text"
-            placeholder="indtast sted eller Formål"
-            name="description"
-            [value]="selectedEntry.logEntryDetail.description ? selectedEntry.logEntryDetail.description : ''"
-            description
-            formControlName="description"-->
+
             <ion-input
             size="50"
             inputmode="text"
@@ -71,17 +55,7 @@
         <ion-col>
           <ion-item lines="inline" class="d-inline">
             <ion-label position="floating"> Start kilometer</ion-label>
-            <!-- <ion-input
-            size="10"
-            inputmode="decimal"
-            maxlength="10"
-            clearInput="true"
-            type="number"
-            [value]="selectedEntry.logEntryDetail.distanceStart ? selectedEntry.logEntryDetail.distanceStart : distanceEnd"
-            placeholder="Indtast start kilometer"
-            name="distanceStart"
-            distanceStart
-            formControlName="distanceStart"> -->
+
             <ion-input
             size="10"
             inputmode="decimal"
@@ -100,16 +74,7 @@
         <ion-col>
           <ion-item lines="inline" class="d-inline">
             <ion-label position="floating"> Slut kilometer</ion-label>
-            <!-- <ion-input
-              size="10"
-              inputmode="decimal"
-              maxlength="10"
-              clearInput="true"
-              type="number"
-              placeholder="Indtast Slut kilometer"
-              name="distanceEnd"
-              [value]="selectedEntry.logEntryDetail.distanceEnd ? selectedEntry.logEntryDetail.distanceEnd : distanceEnd" distanceEnd
-              formControlName="distanceEnd" appDistanceValidator> -->
+
               <ion-input
               size="10"
               inputmode="decimal"
@@ -130,12 +95,7 @@
         <ion-col>
           <ion-item lines="inline" id="fuel" class="">
             <span class="fuel-station"></span>
-            <!-- <ion-checkbox
-            slot="start"
-            name="fuel"
-            [value]="selectedEntry.logEntryDetail.fuel ? selectedEntry.logEntryDetail.fuel: false"
-            fuel
-            formControlName="fuel"> -->
+
             <ion-checkbox
             slot="start"
             name="fuel"
@@ -149,18 +109,7 @@
         <ion-row>
           <ion-col>
             <ion-item lines="inline" class="d-inline" id="amount">
-              <!-- <ion-input
-                slot="start"
-                size="6"
-                inputmode="decimal"
-                [clearInput]="true"
-                type="number"
-                placeholder="Indtast antal"
-                name="amount"
-                amounts
-                [value]="selectedEntry.fuelEntryDetail.amount ? selectedEntry.fuelEntryDetail.amount : 0"
-                formControlName="amount"
-                > -->
+
                 <ion-input
                 slot="start"
                 size="6"
@@ -173,18 +122,7 @@
                 formControlName="amount"
                 >
               </ion-input>
-              <!-- <ion-select
-                name="amountUnit"
-                id="amountUnit"
-                okText="vælg"
-                size="2"
-                amountUnit
-                [value]="selectedEntry.fuelEntryDetail.amountUnit ? selectedEntry.fuelEntryDetail.amountUnit : 'Liter'"
-                formControlName="amountUnit"
-                >
-                <ion-select-option value="Liter">Liter</ion-select-option>
-                <ion-select-option value="kwh"> kwh</ion-select-option>
-              </ion-select> -->
+
               <ion-select
                 name="amountUnit"
                 id="amountUnit"
@@ -204,17 +142,7 @@
 
             <ion-item lines="inline" class="d-inline" id="priceUnit">
               <ion-label position="floating"> pris/{{form.value.amountUnit}}</ion-label>
-              <!-- <ion-input
-                inputmode="decimal"
-                [clearInput]="true"
-                type="number"
-                size="6"
-                placeholder="Indtast pris pr.{{form.value.amountUnit}}"
-                name="priceUnit"
-                priceUnit
-                [value]="selectedEntry.fuelEntryDetail.amount ? selectedEntry.fuelEntryDetail.priceUnit : 0 "
-                formControlName="priceUnit"
-              ></ion-input> -->
+
               <ion-input
                 inputmode="decimal"
                 [clearInput]="true"

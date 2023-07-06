@@ -10,6 +10,7 @@ import { EditLogEntryFormComponent } from '../logEntries/edit-log-entry-form/edi
 import { ListLogEntriesComponent } from '../logEntries/list-log-entries/list-log-entries.component';
 import { IonicModule } from '@ionic/angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserModule } from '../user/user.module';
 
 
 
@@ -20,7 +21,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     IonicModule,
     HomePageRoutingModule,
     ReactiveFormsModule,
-    ServiceWorkerModule
+    ServiceWorkerModule,
+    UserModule
   ],
   declarations: [
     HomePage ,

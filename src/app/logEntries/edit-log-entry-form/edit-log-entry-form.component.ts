@@ -28,7 +28,7 @@ export class EditLogEntryFormComponent implements OnInit {
   // distanceStart!: number;
   // logEntries: any;
   now: Date;
-  form;
+  form: FormGroup<any> | FormGroup<{ date: FormControl<string | Date>; description: FormControl<string>; distanceStart: FormControl<number>; distanceEnd: FormControl<number>; fuel: FormControl<boolean>; amount: FormControl<number>; amountUnit: FormControl<string>; priceUnit: FormControl<number>; }>;
 
   //  driverlogForm: any;
   //  editDriverLogItemForm: any;
@@ -42,18 +42,7 @@ export class EditLogEntryFormComponent implements OnInit {
     entriesService.init();
     this.ngOnInit();
     this.now = new Date();
-    /* this.form = this.fb.group({
-      date: new FormControl(new Date().toISOString().substring(0, 19), {
-        nonNullable: true,
-      }),
-      description: new FormControl('', { nonNullable: true }),
-      distanceStart: new FormControl(this.distanceEnd, { nonNullable: true }),
-      distanceEnd: new FormControl(this.distanceEnd, distanceValidator),
-      fuel: new FormControl(false, { nonNullable: true }),
-      amount: new FormControl(0, { nonNullable: true }),
-      amountUnit: new FormControl('Liter', { nonNullable: true }),
-      priceUnit: new FormControl(0, { nonNullable: true }),
-    }); */
+
   }
 
   cancel() {

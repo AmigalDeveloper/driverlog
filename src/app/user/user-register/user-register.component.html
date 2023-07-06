@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Indtast bruger oplysninger </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()">Registrer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+    <ion-item>
+      <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="username" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Gentag Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="retypePassword" type="password" appIdenticalpasswordValidator></ion-input>
+      <ion-note slot="helper">Gentag password</ion-note>
+      <ion-note slot="error">Password er ikke ens</ion-note>
+    </ion-item>
+    <ion-button block color="primary" type="submit" [disabled]="registerForm.invalid && (registerForm.value.password === registerForm.value.retypePassword)">
+      Register
+    </ion-button>
+  </form>
+</ion-content>
