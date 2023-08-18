@@ -27,8 +27,8 @@ jobs:
               uses: actions/setup-node@v3
             - name: Setup Pages
               uses: actions/configure-pages@v3
-            - name: install gh-pages
-              run: npm install gh-pages --save-dev
+#            - name: install gh-pages
+#              run: npm install gh-pages --save-dev
             - name: Build
               uses: actions/jekyll-build-pages@v1
             - name: Upload artifact
