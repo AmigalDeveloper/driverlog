@@ -2,7 +2,7 @@
   "name": "driver-log",
   "version": "0.0.1",
   "author": "Ionic Framework",
-  "homepage": "http://githubname.github.io/repository",
+  "homepage": "http://developerAmigal.github.io/driver-log",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
