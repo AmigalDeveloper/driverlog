@@ -25,8 +25,6 @@ jobs:
               uses: actions/setup-node@v3
               with: 
                 node-version: 16
-            - name: install angualar
-              run: npm install angular@cli
             - name: clear repo
               run: npm ci
             - name: install depencies
