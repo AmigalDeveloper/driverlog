@@ -2,7 +2,9 @@
 
 name: deploy
 
-on: [push]
+on: 
+    push:
+        branches: [current]
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
       contents: read
