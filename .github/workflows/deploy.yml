@@ -19,18 +19,16 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: checkout
+            - name: Checkout
               uses: actions/checkout@v3
-            - name: setup nodes
-              uses: actions/setup-node@v3
-              with: 
-                node-version: 16
-            - name: clear repo
-              run: npm ci
-            - name: install depencies
-              run: npm install
-            - name: build
-              run: npm run build
+            - name: Setup Pages
+              uses: actions/configure-pages@v3
+            - name: Build
+              uses: actions/jekyll-build-pages@v1
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v1
+      
+      
             
     deploy:
         environment:
