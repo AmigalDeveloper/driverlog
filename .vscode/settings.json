@@ -1,0 +1,71 @@
+{
+    "debug.javascript.defaultRuntimeExecutable": {
+        {
+            "type": "npm",
+            "script": "start",
+            "isBackground": true,
+            "presentation": {
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "owner": "typescript",
+                "source": "ts",
+                "applyTo": "closedDocuments",
+                "fileLocation": ["relative", "${cwd}"],
+                "pattern": "$tsc",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": {
+                        "regexp": "(.*?)"
+                    },
+                    "endsPattern": {
+                        "regexp": "Compiled |Failed to compile."
+                    }
+                }
+            }
+        }
+        {
+            "name": "Launch Angular",
+            "type": "chrome",
+            "request": "launch",
+            "preLaunchTask": "npm: start",
+            "url": "http://localhost:4200/",
+            "webRoot": "${workspaceFolder}"
+        }
+    {
+        "type": "npm",
+        "script": "start",
+        "isBackground": true,
+        "presentation": {
+            "focus": true,
+            "panel": "dedicated"
+        },
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        },
+        "problemMatcher": {
+            "owner": "typescript",
+            "source": "ts",
+            "applyTo": "closedDocuments",
+            "fileLocation": ["relative", "${cwd}"],
+            "pattern": "$tsc",
+            "background": {
+                "activeOnStart": true,
+                "beginsPattern": {
+                    "regexp": "(.*?)"
+                },
+                "endsPattern": {
+                    "regexp": "Compiled |Failed to compile."
+                }
+            }
+        }
+    }
+    
+    }
+}
