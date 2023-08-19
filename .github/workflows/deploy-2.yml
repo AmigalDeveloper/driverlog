@@ -23,7 +23,7 @@ jobs:
         npm install
     - name: Build
       run: |
-        ionic build --prod -- --base-href 'https://developerAmigal.github.io/driver-log/'
+        ionic build --prod -- --base-href 'https://AmigalDeveloper.github.io/driver-log/'
         ls www
 
     - name: Deploy
