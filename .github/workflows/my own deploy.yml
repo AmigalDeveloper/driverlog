@@ -16,7 +16,7 @@ jobs:
             - name: build App
               run: npm run build
             - name: install tar
-              run: npm install tar
+              run: npm install -g tar
             - uses: actions/upload-pages-artifact@v2
               env:
                 PATH: www/  
