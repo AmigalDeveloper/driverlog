@@ -14,6 +14,6 @@ jobs:
             - name: install framework
               run: npm install
             - name: build App
-              run: npm build
+              run: npm run build
             - uses: actions/upload-pages-artifact@v2
             - uses: actions/deploy-pages@v2
