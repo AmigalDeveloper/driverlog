@@ -15,7 +15,7 @@ jobs:
         install-pods: false
 
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v3
 
     - name: Install NPM Modules
       run: |

@@ -1,0 +1,19 @@
+name: build and deploy branche
+run-name: ${{ github.actor}} build and deploy 
+on: [push]
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get code
+              uses: actions/checkout@v3
+            - name: setup nodes and npm
+              uses: actions/setup-node@v3
+            - name: install ionic@cli
+              run: npm install ionic@cli
+            - name: install framework
+              run: npm install
+            - name: build App
+              run: npm build
+            - uses: actions/upload-pages-artifact
+            - uses: actions/deploy-pages
