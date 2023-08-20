@@ -16,4 +16,6 @@ jobs:
             - name: build App
               run: npm run build
             - uses: actions/upload-pages-artifact@v2
+              env:
+                PATH: www/  
             - uses: actions/deploy-pages@v2
