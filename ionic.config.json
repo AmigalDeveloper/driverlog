@@ -1,7 +1,0 @@
-{
-  "name": "driver-log",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
