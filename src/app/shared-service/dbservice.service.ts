@@ -211,11 +211,5 @@ export class DBServiceService {
        //const putResult = database.transaction(_objectStoreName,'readwrite').objectStore(_objectStoreName).put(value);
   }
 
-  get(objectStore: IDBObjectStore, key?: any ){
-    console.log('dbService get called with',objectStore,key);
-    const returnGet = objectStore.get(key);
-    return returnGet;
-  }
-
 
  }

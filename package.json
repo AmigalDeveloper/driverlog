@@ -5,11 +5,11 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "nx serve",
-    "build": "nx build",
-    "watch": "nx build --watch --configuration development",
-    "test": "nx test",
-    "lint": "nx lint"
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -46,8 +46,8 @@
     "@angular/language-service": "^16.1.0",
     "@capacitor/cli": "^4.8.0",
     "@ionic/angular-toolkit": "^6.0.0",
-    "@nx/angular": "16.7.2",
-    "@nx/workspace": "16.7.2",
+    "@nx/angular": "16.5.0",
+    "@nx/workspace": "16.5.0",
     "@schematics/angular": "^16.1.0",
     "@types/jasmine": "~4.0.0",
     "@types/node": "^12.11.1",
@@ -66,7 +66,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "nx": "16.7.2",
+    "nx": "16.5.0",
     "nx-cloud": "latest",
     "ts-node": "~8.3.0",
     "typescript": "~5.1.3"
