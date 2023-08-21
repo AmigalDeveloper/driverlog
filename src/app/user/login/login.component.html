@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Indtast bruger oplysninger </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()">Login</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+    <ion-item>
+      <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="username" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-button block color="primary" type="submit" [disabled]="loginForm.invalid">
+      Login
+    </ion-button>
+  </form>
+</ion-content>
