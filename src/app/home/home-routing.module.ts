@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePage } from '../../../driver-log-a2/src/app/home/home.page';
+import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
