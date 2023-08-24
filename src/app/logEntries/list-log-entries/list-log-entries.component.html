@@ -1,0 +1,30 @@
+<ion-grid class="ion-no-padding">
+  <ion-row>
+    <ion-col class="field-date"> dato</ion-col>
+    <ion-col class="field-start-km ion-text-end"> start km </ion-col>
+    <ion-col class="field-end-km ion-text-end"> slut km</ion-col>
+    <ion-col class="field-description" > Beskrivelse</ion-col>
+    <ion-col class="field-amount ion-text-end ion-hide-md-down"> antal</ion-col>
+    <ion-col class="field-unit ion-hide-md-down"> enhed</ion-col>
+    <ion-col class="field-price-unit ion-text-end ion-hide-md-down" > pris pr. enhed</ion-col>
+    <ion-col class="field-distance-unit ion-hide-md- ion-hide-md-down ion-text-end" > distance pr enhed </ion-col>
+  </ion-row>
+  <div *ngIf="logEntries">
+  <ion-row *ngFor="let entry of logEntries; index as i" >
+    <ng-container *ngIf="i <= 10" (click)="showDetail(entry)">
+     <ion-col class="field-date"> {{entry.logEntryDetail.date | date: "dd.MM.yy"}}</ion-col>
+     <ion-col class="field-start-km ion-text-end"> {{entry.logEntryDetail.distanceStart}} </ion-col>
+     <ion-col class="field-end-km ion-text-end" > {{entry.logEntryDetail.distanceEnd}}</ion-col>
+     <ion-col class="field-description " > {{entry.logEntryDetail.description}}</ion-col>
+     <ng-container class="" *ngIf="entry.logEntryDetail.fuel">
+      <ion-col class="field-amount ion-text-end ion-hide-md-down"> {{entry.fuelEntryDetail.amount| number: '.2-2'}}</ion-col>
+      <ion-col class="field-unit ion-hide-md-down"> {{entry.fuelEntryDetail.amountUnit}}</ion-col>
+      <ion-col class="field-price-unit ion-text-end ion-hide-md-down"> {{entry.fuelEntryDetail.priceUnit | number: '.2-2'}}</ion-col>
+      <ion-col class="field-distance-unit ion-text-end ion-hide-md-down" > {{entry.fuelEntryDetail.distance/entry.fuelEntryDetail.amount | number:'1.2-2'}} km/l</ion-col>
+     </ng-container>
+  </ng-container>
+  <ion-col class="log-entry-delete" (click)="delete(i)">delete</ion-col>
+
+  </ion-row>
+</div>
+</ion-grid>
