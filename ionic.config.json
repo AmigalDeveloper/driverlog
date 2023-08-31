@@ -1,5 +1,5 @@
 {
-  "name": "Driverlog",
+  "name": "driverlog",
   "integrations": {
     "capacitor": {}
   },
