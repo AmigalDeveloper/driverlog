@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d www"
   },
   "private": true,
   "dependencies": {
