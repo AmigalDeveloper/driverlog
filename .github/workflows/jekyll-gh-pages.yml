@@ -35,7 +35,7 @@ jobs:
         run:  npm ci
 
       - name: build App
-        run: npm deploy
+        run: npm run deploy
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build
